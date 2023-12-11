@@ -7,12 +7,25 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import java.math.BigDecimal;
 
+/**
+ * Represents an operation in the calculator.
+ */
 @Data
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode
 public class Operacao {
     private TipoOperacao tipoOperacao;
+    
+    /**
+     * Constructs a new Operacao object with the specified TipoOperacao.
+     * 
+     * @param tipoOperacao the type of operation
+     */
+    public Operacao(TipoOperacao tipoOperacao) {
+        this.tipoOperacao = tipoOperacao;
+    }
+
     private BigDecimal precoUnitario;
     private int quantidade;
 }

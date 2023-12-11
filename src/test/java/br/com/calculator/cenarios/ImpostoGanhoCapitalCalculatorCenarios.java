@@ -106,14 +106,4 @@ public class ImpostoGanhoCapitalCalculatorCenarios {
             new Imposto(BigDecimal.valueOf(12000.00d).setScale(2)),
             Imposto.builder().error("Can't sell more stocks than you have").build());
 
-
-
-
-
-
-
-    
-    
-    
-
 }

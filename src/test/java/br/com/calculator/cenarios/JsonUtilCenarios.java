@@ -11,8 +11,8 @@ public class JsonUtilCenarios {
             "{\"operation\":\"sell\", \"unit-cost\":20.00, \"quantity\": 5000}]";
     public final static List<OperacaoInput> INPUT_LIST_VALIDA = construirListaValida();
     public final static String JSON_IMPOSTO_VALIDO = "[{\"tax\":0.01},{\"tax\":10000.01}]";
-    public final static List<ImpostoOutput> OUTPUT_LIST_VALIDA = List.of(new ImpostoOutput(BigDecimal.valueOf(0.01d)),
-            new ImpostoOutput(BigDecimal.valueOf(10000.01d)));
+public final static List<ImpostoOutput> OUTPUT_LIST_VALIDA = List.of(new ImpostoOutput(BigDecimal.valueOf(0.01d)),
+                new ImpostoOutput(new BigDecimal("10000.01")));
 
 
     private static List<OperacaoInput> construirListaValida(){

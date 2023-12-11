@@ -62,7 +62,7 @@ public class RegrasGanhoCapitalAcoesImpl implements IRegrasGanhoCapitalAcoes {
 
     @Override
     public BigDecimal calcularPrecoMedioPonderado(int quantidadeAcoesAtual,
-                                                  BigDecimal mediaPonderadaAtual, Operacao operacaoDeCompra) {
+         BigDecimal mediaPonderadaAtual, Operacao operacaoDeCompra) {
 
         BigDecimal montanteAtual = this.calcularValorOperacao(mediaPonderadaAtual,quantidadeAcoesAtual);
         BigDecimal valorOperacaoAtual = this.calcularValorOperacao(operacaoDeCompra);

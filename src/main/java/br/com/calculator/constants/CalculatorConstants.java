@@ -2,6 +2,9 @@ package br.com.calculator.constants;
 
 import java.math.BigDecimal;
 
+/**
+ * This class contains constants used in the calculator application.
+ */
 public final class CalculatorConstants {
 
    public static double  VALOR_TRIBUTAVEL = 20000.00d;
@@ -10,7 +13,6 @@ public final class CalculatorConstants {
    public static double  ZERO = 0.0;
    public static int     ZERO_I = 0;
    public static BigDecimal ZERO_B = BigDecimal.valueOf(0.00d);
-
 }
 
 

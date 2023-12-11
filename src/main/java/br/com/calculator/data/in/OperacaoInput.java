@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents an input for an operation in the calculator.
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

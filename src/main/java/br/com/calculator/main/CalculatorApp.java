@@ -13,12 +13,20 @@ import br.com.calculator.service.interfaces.IImpostoGanhoCapitalCalculator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * Main application class for the tax calculator.
+ */
 public class CalculatorApp {
 
+    /**
+     * Main method for the tax calculator application.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
 
         IRegrasGanhoCapitalAcoes regras = new RegrasGanhoCapitalAcoesImpl();
+        IImpostoGanhoCapitalCalculator calculator = ImpostoGanhoCapitalCalculatorImpl.of(regras);
 
         List<String> impostosToJson = new ArrayList<>();
 
@@ -27,7 +35,6 @@ public class CalculatorApp {
             while (scanner.hasNextLine()){
 
                 String operationsJson = scanner.nextLine();
-                IImpostoGanhoCapitalCalculator calculator = ImpostoGanhoCapitalCalculatorImpl.of(regras);
 
                 if (operationsJson.isEmpty()) {
                     break;
@@ -41,11 +48,11 @@ public class CalculatorApp {
             impostosToJson.forEach(System.out::println);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Falha no processamento! "+ e.getMessage());
+            System.out.println("Falha no processamento! "+ e);
             System.exit(100);
         } finally {
             System.exit(0);
         }
     }
+
 }

@@ -39,3 +39,19 @@ Necessário ter a JDK (versão acima) e MAVEN instalados na máquina que irá ex
 2. Acessar a pasta **calculator/target/**
 3. Executar o comando "**java -jar calculatorimposto-1.0-jar-with-dependencies.jar**"
 
+## Diagrama de classe de domínio:
+```mermaid
+classDiagram
+    class Imposto {
+        +BigDecimal valorDevido
+        +String error
+        +Imposto(BigDecimal valorDevido)
+    }
+    class Operacao {
+        +TipoOperacao tipoOperacao
+        +BigDecimal precoUnitario
+        +int quantidade
+        +Operacao(TipoOperacao tipoOperacao)
+    }
+    Imposto :> Operacao
+```
