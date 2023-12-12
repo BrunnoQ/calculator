@@ -18,7 +18,7 @@ public class RegrasGanhoCapitalAcoesTest {
 
     @BeforeAll
     static void init(){
-        regrasGanhoCapitalAcoes = new RegrasGanhoCapitalAcoesImpl();
+        regrasGanhoCapitalAcoes = RegrasGanhoCapitalAcoesImpl.of();
     }
 
     @Test
