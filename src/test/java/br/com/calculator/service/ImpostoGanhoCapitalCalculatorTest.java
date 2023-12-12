@@ -17,7 +17,7 @@ public class ImpostoGanhoCapitalCalculatorTest {
 
     @BeforeEach
     void init(){
-        regras = new RegrasGanhoCapitalAcoesImpl();
+        regras = RegrasGanhoCapitalAcoesImpl.of();
         calculator = ImpostoGanhoCapitalCalculatorImpl.of(regras);
     }
 

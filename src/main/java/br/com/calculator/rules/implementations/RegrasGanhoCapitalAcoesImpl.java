@@ -3,11 +3,13 @@ package br.com.calculator.rules.implementations;
 import br.com.calculator.data.domain.Operacao;
 import br.com.calculator.enums.TipoOperacao;
 import br.com.calculator.rules.interfaces.IRegrasGanhoCapitalAcoes;
+import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import static br.com.calculator.constants.CalculatorConstants.VALOR_TRIBUTAVEL;
 import static br.com.calculator.constants.CalculatorConstants.ZERO;
 
+@RequiredArgsConstructor(staticName = "of")
 public class RegrasGanhoCapitalAcoesImpl implements IRegrasGanhoCapitalAcoes {
 
     @Override

@@ -5,13 +5,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
+@AllArgsConstructor
 @Builder
+@EqualsAndHashCode
+@RequiredArgsConstructor(staticName = "of")
 public class ImpostoOutput {
 
     public ImpostoOutput(BigDecimal valorDevido){

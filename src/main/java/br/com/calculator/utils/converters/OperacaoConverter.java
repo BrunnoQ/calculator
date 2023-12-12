@@ -64,7 +64,7 @@ public final class OperacaoConverter {
     public static ImpostoOutput domainToOutput(final Imposto operacaoOutput) {
 
         if (operacaoOutput == null){
-            return new ImpostoOutput();
+            return ImpostoOutput.of();
         }
 
         return new ImpostoOutput(operacaoOutput.getValorDevido() != null ? operacaoOutput.getValorDevido()

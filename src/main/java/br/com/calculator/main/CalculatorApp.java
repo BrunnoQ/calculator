@@ -25,7 +25,7 @@ public class CalculatorApp {
      */
     public static void main(String[] args) {
 
-        IRegrasGanhoCapitalAcoes regras = new RegrasGanhoCapitalAcoesImpl();
+        IRegrasGanhoCapitalAcoes regras = RegrasGanhoCapitalAcoesImpl.of();
         IImpostoGanhoCapitalCalculator calculator = ImpostoGanhoCapitalCalculatorImpl.of(regras);
 
         List<String> impostosToJson = new ArrayList<>();
