@@ -5,16 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 /**
  * Represents an input for an operation in the calculator.
  */
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @EqualsAndHashCode
-@RequiredArgsConstructor(staticName = "of")
 public class OperacaoInput {
     @JsonProperty("operation")
     private String tipoOperacao;
