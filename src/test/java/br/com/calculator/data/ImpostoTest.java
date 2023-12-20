@@ -67,7 +67,7 @@ public class ImpostoTest {
     @DisplayName("Deve testar o of")
     void testar_of() {
         BigDecimal valorDevido = new BigDecimal("100.00");
-        Imposto imposto = Imposto.of();
+        Imposto imposto = new Imposto();
         imposto.setValorDevido(valorDevido);
 
         assertEquals(valorDevido, imposto.getValorDevido());
