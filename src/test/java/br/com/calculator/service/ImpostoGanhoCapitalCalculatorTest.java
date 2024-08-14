@@ -2,8 +2,15 @@ package br.com.calculator.service;
 
 import br.com.calculator.rules.implementations.RegrasGanhoCapitalAcoesImpl;
 import br.com.calculator.rules.interfaces.IRegrasGanhoCapitalAcoes;
+import br.com.calculator.service.implementations.CalculadoraDeValoresImpl;
 import br.com.calculator.service.implementations.ImpostoGanhoCapitalCalculatorImpl;
+import br.com.calculator.service.implementations.ManipuladorDeAcoesImpl;
+import br.com.calculator.service.implementations.VerificadorDeOperacoesTributaveisImpl;
+import br.com.calculator.service.interfaces.ICalculadoraDeValores;
 import br.com.calculator.service.interfaces.IImpostoGanhoCapitalCalculator;
+import br.com.calculator.service.interfaces.IManipuladorDeAcoes;
+import br.com.calculator.service.interfaces.IVerificadorDeOperacoesTributaveis;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,10 +21,16 @@ public class ImpostoGanhoCapitalCalculatorTest {
 
     IImpostoGanhoCapitalCalculator calculator;
     IRegrasGanhoCapitalAcoes regras;
+    IVerificadorDeOperacoesTributaveis verificador;
+    IManipuladorDeAcoes manipulador;
+    ICalculadoraDeValores calculadoraDeValores;
 
     @BeforeEach
     void init(){
-        regras = RegrasGanhoCapitalAcoesImpl.of();
+        calculadoraDeValores = CalculadoraDeValoresImpl.of();
+        verificador = VerificadorDeOperacoesTributaveisImpl.of(calculadoraDeValores);
+        manipulador = ManipuladorDeAcoesImpl.of();
+        regras = RegrasGanhoCapitalAcoesImpl.of(calculadoraDeValores, verificador, manipulador);
         calculator = ImpostoGanhoCapitalCalculatorImpl.of(regras);
     }
 

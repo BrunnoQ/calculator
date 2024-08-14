@@ -1,82 +1,57 @@
 package br.com.calculator.rules.implementations;
 
 import br.com.calculator.data.domain.Operacao;
-import br.com.calculator.enums.TipoOperacao;
 import br.com.calculator.rules.interfaces.IRegrasGanhoCapitalAcoes;
+import br.com.calculator.service.interfaces.ICalculadoraDeValores;
+import br.com.calculator.service.interfaces.IManipuladorDeAcoes;
+import br.com.calculator.service.interfaces.IVerificadorDeOperacoesTributaveis;
 import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import static br.com.calculator.constants.CalculatorConstants.VALOR_TRIBUTAVEL;
-import static br.com.calculator.constants.CalculatorConstants.ZERO;
 
 @RequiredArgsConstructor(staticName = "of")
 public class RegrasGanhoCapitalAcoesImpl implements IRegrasGanhoCapitalAcoes {
 
+    private final ICalculadoraDeValores calculadoraDeValores;
+    private final IVerificadorDeOperacoesTributaveis verificadorDeOperacoesTributaveis;
+    private final IManipuladorDeAcoes manipuladorDeAcoes;
+
     @Override
     public BigDecimal calcularValorOperacao(final BigDecimal precoUnitario, final int quantidade) {
-        return precoUnitario
-                .multiply(BigDecimal.valueOf(quantidade));
+        return calculadoraDeValores.calcularValorOperacao(precoUnitario, quantidade);
     }
 
     @Override
     public BigDecimal calcularValorOperacao(final Operacao operacao) {
-        return this.calcularValorOperacao(operacao.getPrecoUnitario(),
-                operacao.getQuantidade());
+        return calculadoraDeValores.calcularValorOperacao(operacao);
     }
 
     @Override
     public BigDecimal calcularLucro(BigDecimal precoMedioPonderado, Operacao operacao) {
-        return operacao.getPrecoUnitario().subtract(precoMedioPonderado)
-                .multiply(BigDecimal.valueOf(operacao.getQuantidade()));
+        return calculadoraDeValores.calcularLucro(precoMedioPonderado, operacao);
     }
 
     @Override
     public BigDecimal tributarRendimento(BigDecimal valorLucro, double aliquota) {
-        return valorLucro.multiply(BigDecimal.valueOf(aliquota));
+        return calculadoraDeValores.tributarRendimento(valorLucro, aliquota);
     }
 
     @Override
-    public boolean isOperacaoTributavel(final Operacao operacao, BigDecimal precoMedioPonderado,
-                                        BigDecimal patrimonioAcumulado){
-
-        if (operacao.getTipoOperacao().equals(TipoOperacao.BUY))
-            return false;
-
-        BigDecimal valorOperacao = this.calcularValorOperacao(operacao);
-
-        BigDecimal valorTributavel = BigDecimal.valueOf(VALOR_TRIBUTAVEL);
-        BigDecimal zero = BigDecimal.valueOf(ZERO);
-        
-        boolean isValorOperacaoTributavel = valorOperacao.compareTo(valorTributavel) > 0;
-        boolean isPrecoUnitarioMaiorQuePrecoMedio = operacao.getPrecoUnitario().compareTo(precoMedioPonderado) > 0;
-        boolean isLucroPositivo = this.calcularLucro(precoMedioPonderado, operacao).compareTo(zero) > 0;
-        boolean isPatrimonioAcumuladoPositivo = patrimonioAcumulado.compareTo(zero) > 0;
-        
-        return isValorOperacaoTributavel 
-                && isPrecoUnitarioMaiorQuePrecoMedio 
-                && isLucroPositivo 
-                && isPatrimonioAcumuladoPositivo;
+    public boolean isOperacaoTributavel(final Operacao operacao, BigDecimal precoMedioPonderado, BigDecimal patrimonioAcumulado) {
+        return verificadorDeOperacoesTributaveis.isOperacaoTributavel(operacao, precoMedioPonderado, patrimonioAcumulado);
     }
 
     @Override
     public int somarTotalAcoes(final int quantidadeAtualAcoes, final Operacao operacaoDeCompra) {
-        return operacaoDeCompra.getTipoOperacao().equals(TipoOperacao.BUY) ? quantidadeAtualAcoes
-                + operacaoDeCompra.getQuantidade() : quantidadeAtualAcoes;
+        return manipuladorDeAcoes.somarTotalAcoes(quantidadeAtualAcoes, operacaoDeCompra);
     }
 
     @Override
     public int subtrairTotalAcoes(final int quantidadeAtualAcoes, final Operacao operacaoDeVenda) {
-        return operacaoDeVenda.getTipoOperacao().equals(TipoOperacao.SELL) ? quantidadeAtualAcoes
-                - operacaoDeVenda.getQuantidade() : quantidadeAtualAcoes;
+        return manipuladorDeAcoes.subtrairTotalAcoes(quantidadeAtualAcoes, operacaoDeVenda);
     }
 
     @Override
-    public BigDecimal calcularPrecoMedioPonderado(int quantidadeAcoesAtual,
-        BigDecimal mediaPonderadaAtual, Operacao operacaoDeCompra) {
-
-        BigDecimal montanteAtual = this.calcularValorOperacao(mediaPonderadaAtual,quantidadeAcoesAtual);
-        BigDecimal valorOperacaoAtual = this.calcularValorOperacao(operacaoDeCompra);
-        long totalGlobalQuantidadeAcoes = operacaoDeCompra.getQuantidade() + quantidadeAcoesAtual;
-        return montanteAtual.add(valorOperacaoAtual).divide(BigDecimal.valueOf(totalGlobalQuantidadeAcoes),2, RoundingMode.HALF_EVEN);
+    public BigDecimal calcularPrecoMedioPonderado(int quantidadeAcoesAtual, BigDecimal mediaPonderadaAtual, Operacao operacaoDeCompra) {
+        return calculadoraDeValores.calcularPrecoMedioPonderado(quantidadeAcoesAtual, mediaPonderadaAtual, operacaoDeCompra);
     }
 }
