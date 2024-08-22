@@ -36,6 +36,7 @@
                             <excludes>
                                 <exclude>br/com/calculator/main/CalculatorApp*</exclude>
                                 <exclude>br/com/calculator/data/**</exclude>
+                                <exclude>br/com/calculator/puzzles/**</exclude>
                             </excludes>
                         </configuration>
                     </execution>
