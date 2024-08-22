@@ -50,7 +50,23 @@ classDiagram
         +int quantidade
         +Operacao(TipoOperacao tipoOperacao)
     }
+    class RegrasGanhoCapitalAcoesImpl {
+        +void inicializarContadoresDeCalculo(Operacao operacao)
+        +void aplicarRegrasCompra(Operacao operacao)
+        +void aplicarRegrasVenda(Operacao operacao)
+        +BigDecimal calcularValorOperacao(BigDecimal precoUnitario, int quantidade)
+        +BigDecimal calcularLucro(BigDecimal precoMedioPonderado, Operacao operacao)
+        +int somarTotalAcoes(int quantidadeAtualAcoes, Operacao operacaoDeCompra)
+        +int subtrairTotalAcoes(int quantidadeAtualAcoes, Operacao operacaoDeVenda)
+        +BigDecimal calcularPrecoMedioPonderado(int quantidadeAcoesAtual, BigDecimal mediaPonderadaAtual, Operacao operacaoDeCompra)
+    }
+    class AbstractImpostoGanhoCapitalAcoes {
+        +void inicializarContadoresDeCalculo(Operacao operacao)
+        +void aplicarRegrasCompra(Operacao operacao)
+        +void aplicarRegrasVenda(Operacao operacao)
+    }
     Imposto :> Operacao
+    RegrasGanhoCapitalAcoesImpl :> AbstractImpostoGanhoCapitalAcoes
 ```
 
 ## Diagrama de Sequência
