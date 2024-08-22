@@ -21,7 +21,6 @@ public class JsonUtilTest {
     }
 
     @Test
-    @DisplayName("Deve realizar conversao de lista de impostos para json.")
     void converter_list_to_json_sucesso() {
         assertEquals(JSON_IMPOSTO_VALIDO, listToJson(OUTPUT_LIST_VALIDA));
     }
