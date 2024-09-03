@@ -14,28 +14,17 @@ public class DataStructsExploreCollections {
 
     public static void main(String[] args) {
 
+        ArrayListExample arrayListExample =
+                new DataStructsExploreCollections().new ArrayListExample();
+        arrayListExample.seila();
 
     }
 
+    // ArrayList
     /**
+     * Um ArrayList é uma implementação da interface List que utiliza um array para armazenar os
+     * elementos. Aqui estão os principais usos para um ArrayList:
      * 
-     * 
-     * Inserções e Remoções Frequentes:
-     * 
-     * Quando a aplicação necessita de muitas operações de inserção e remoção de elementos,
-     * especialmente no início ou no meio da lista, uma LinkedList é mais eficiente do que uma
-     * ArrayList. Isso ocorre porque a LinkedList não precisa deslocar elementos como a ArrayList.
-     * Implementação de Filas e Deques:
-     * 
-     * LinkedList implementa as interfaces Queue e Deque, tornando-a uma escolha natural para
-     * implementar filas (FIFO) e deques (double-ended queues). Acesso Sequencial:
-     * 
-     * Se a aplicação faz muitas operações de acesso sequencial (iterar sobre a lista), a LinkedList
-     * pode ser eficiente. No entanto, para acesso aleatório (acessar elementos por índice), a
-     * ArrayList é mais eficiente. Estruturas de Dados Complexas:
-     * 
-     * LinkedList pode ser usada para implementar outras estruturas de dados complexas, como listas
-     * ligadas, pilhas e árvores.
      */
     class ArrayListExample {
 
@@ -45,6 +34,9 @@ public class DataStructsExploreCollections {
             list.add("A");
             list.add("B");
             list.add("C");
+            list.add("C");
+            // unshift
+            list.add(0, "D");
             System.out.println(list.get(1)); // Output: B
 
             // Exemplo de Armazenamento de Dados Temporários
@@ -53,6 +45,11 @@ public class DataStructsExploreCollections {
             tempData.add(20);
             tempData.add(30);
             System.out.println(tempData); // Output: [10, 20, 30]
+            // Reverse
+            for (int i = tempData.size() - 1; i >= 0; i--) {
+                System.out.println(tempData.get(i));
+            }
+
 
             // Exemplo de Implementação de Pilha
             ArrayList<String> stack = new ArrayList<>();
@@ -237,7 +234,6 @@ public class DataStructsExploreCollections {
             System.out.println(priorityQueue.poll()); // Output: 5
         }
     }
-
 
     /**
      * Exemplo de uso de PriorityQueue com Comparator customizado:
