@@ -16,7 +16,11 @@ public class DataStructsExploreCollections {
 
         ArrayListExample arrayListExample =
                 new DataStructsExploreCollections().new ArrayListExample();
-        arrayListExample.seila();
+        // arrayListExample.seila();
+
+        LinkedListExample linkedListExample =
+                new DataStructsExploreCollections().new LinkedListExample();
+        linkedListExample.seila();
 
     }
 
@@ -111,6 +115,15 @@ public class DataStructsExploreCollections {
             deque.addFirst("A");
             deque.addLast("B");
             System.out.println(deque.removeLast()); // Output: B
+
+            // Lista duplamente encadeada
+            LinkedList<String> doublyLinkedList = new LinkedList<>();
+            doublyLinkedList.add("A");
+            doublyLinkedList.add("B");
+            doublyLinkedList.add("C");
+            System.out.println(doublyLinkedList); // Output: [A, B, C]
+
+
         }
     }
 

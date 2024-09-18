@@ -9,6 +9,7 @@ public class FirstRecurringCharacter {
         System.out.println(firstRecurringCharacter2("ABC"));
     }
 
+    // O(n^2)
     public static char firstRecurringCharacter(String str) {
         char[] charArray = str.toCharArray();
         for (int i = 0; i < charArray.length; i++) {
@@ -21,6 +22,7 @@ public class FirstRecurringCharacter {
         return '\0';
     }
 
+    // O(n)
     public static char firstRecurringCharacter2(String str) {
         char[] charArray = str.toCharArray();
         HashMap<Character, Integer> map = new HashMap<>();
